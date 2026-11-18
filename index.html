@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOA - Aplicación Estoica</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Estilos de la aplicación -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Cabecera Imperial -->
+        <header class="stoa-header">
+            <h1 class="stoa-title">STOA</h1>
+            <p class="stoa-subtitle">"El arte de governar el alma a través de la razón"</p>
+            
+            <div class="user-profile-bar">
+                <div id="equipped-avatar-box" class="avatar-mini" title="Avatar Activo">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="var(--gold-primary)" stroke-width="2"><circle cx="32" cy="32" r="28"/></svg>
+                </div>
+                <div style="text-align: right;">
+                    <div id="display-user" style="font-family: 'Cinzel', serif; color: var(--gold-light); font-weight: 700;">Filósofo</div>
+                    <div id="display-rank" style="font-size: 0.8rem; color: var(--text-muted);">Nivel 1: Ciudadano de Atenas</div>
+                </div>
+                <button class="btn-small" onclick="cambiarUsuario()">Cambiar Perfil</button>
+            </div>
+        </header>
+
+        <!-- Navegación Principal -->
+        <nav class="stoa-nav">
+            <button id="nav-pilares" class="nav-btn active" onclick="cambiarVista('pilares')">Pilares Estoicos</button>
+            <button id="nav-diario" class="nav-btn" onclick="cambiarVista('diario')">Bitácora de Séneca</button>
+            <button id="nav-insignias" class="nav-btn" onclick="cambiarVista('insignias')">Panteón de Insignias</button>
+        </nav>
+
+        <!-- Contenedor Dinámico Principal -->
+        <main id="app-content">
+            <!-- El contenido se inyecta dinámicamente -->
+        </main>
+    </div>
+
+    <!-- Archivo de Lógica -->
+    <script src="app.js"></script>
+</body>
+</html>
