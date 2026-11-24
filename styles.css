@@ -1,69 +1,134 @@
 :root {
-    --bg-obsidian: #0d0f12;
-    --panel-bg: #161a22;
-    --panel-border: #262c38;
-    --gold-primary: #d4af37;
-    --gold-light: #f3e5ab;
-    --gold-dark: #aa820a;
+    --bg-obsidian: #08090c;
+    --panel-bg: #12161f;
+    --panel-border: #252c3a;
+    --gold-bright: #fff3b0;
+    --gold-light: #ffd147;
+    --gold-primary: #d49b1a;
+    --gold-dark: #7a5204;
+    --gold-deep: #3d2700;
     --text-main: #e2e8f0;
     --text-muted: #94a3b8;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
 body {
-    background-color: var(--bg-obsidian);
+    background: radial-gradient(circle at 50% 0%, #171c28 0%, var(--bg-obsidian) 70%);
     color: var(--text-main);
     font-family: 'Cormorant Garamond', serif;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .app-container {
-    max-width: 1000px;
+    width: 100%;
+    max-width: clamp(320px, 92vw, 1340px);
     margin: 0 auto;
-    padding: 20px;
+    padding: clamp(12px, 2.5vw, 32px);
 }
 
+/* Cabecera Adaptable */
 .stoa-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    border-bottom: 2px solid var(--gold-dark);
-    padding-bottom: 20px;
-    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(212, 155, 26, 0.45);
+    padding-bottom: clamp(16px, 3vw, 28px);
+    margin-bottom: clamp(18px, 3vw, 32px);
+    gap: 14px;
     position: relative;
 }
 
+/* Título Principal STOA: 3D Metálico Facetado + Escalado Fluido */
 .stoa-title {
-    font-family: 'Cinzel', serif;
-    font-size: 3rem;
-    color: var(--gold-primary);
+    font-family: 'Montserrat', 'Cinzel', sans-serif;
+    font-size: clamp(2.1rem, 6.5vw, 4.5rem);
+    font-weight: 900;
     margin: 0;
-    letter-spacing: 0.2em;
+    letter-spacing: clamp(0.08em, 0.2vw, 0.22em);
+    line-height: 1.05;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    word-break: break-word;
+    background: linear-gradient(
+        135deg,
+        #fff7c2 0%,
+        #e6b325 22%,
+        #8a5a00 42%,
+        #ffe47a 55%,
+        #b87c08 75%,
+        #fff0a8 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter:
+        drop-shadow(0 2px 0 #8a5a00)
+        drop-shadow(0 4px 0 #5c3b00)
+        drop-shadow(0 6px 0 #332000)
+        drop-shadow(0 12px 22px rgba(0, 0, 0, 0.95))
+        drop-shadow(0 0 18px rgba(255, 209, 71, 0.25));
 }
 
 .stoa-subtitle {
     font-style: italic;
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    margin-top: 5px;
+    color: #cbd5e1;
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    margin: 0;
+    max-width: 65ch;
+    letter-spacing: 0.03em;
+    line-height: 1.35;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
 }
 
+/* Barra de Perfil: Fluye sin pisar textos en móviles, se ubica arriba a la derecha en pantallas amplias */
 .user-profile-bar {
-    position: absolute;
-    right: 10px;
-    top: 10px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
-    text-align: right;
+    justify-content: center;
+    gap: 10px 12px;
+    width: 100%;
+}
+
+@media (min-width: 860px) {
+    .stoa-header {
+        padding-top: 8px;
+    }
+
+    .user-profile-bar {
+        position: absolute;
+        right: 4px;
+        top: 6px;
+        width: auto;
+        justify-content: flex-end;
+        text-align: right;
+    }
 }
 
 .avatar-mini {
-    width: 44px;
-    height: 44px;
+    width: clamp(38px, 5vw, 48px);
+    height: clamp(38px, 5vw, 48px);
+    flex-shrink: 0;
     border: 1px solid var(--gold-primary);
     border-radius: 50%;
     padding: 4px;
     background: var(--panel-bg);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+    box-shadow: 0 0 12px rgba(212, 155, 26, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,70 +141,132 @@ body {
 }
 
 .btn-small {
-    background: transparent;
-    border: 1px solid var(--gold-dark);
-    color: var(--gold-primary);
-    padding: 6px 12px;
+    background: linear-gradient(150deg, #ffd147 0%, #b87c08 55%, #5c3b00 100%);
+    border: 1px solid #ffe47a;
+    color: #0b0d11;
+    padding: clamp(6px, 1vw, 9px) clamp(10px, 1.5vw, 16px);
     cursor: pointer;
-    font-size: 0.9rem;
-    margin-left: 8px;
-    transition: all 0.3s;
-    font-family: 'Cinzel', serif;
+    font-size: clamp(0.72rem, 1.2vw, 0.85rem);
+    font-weight: 800;
+    transition: all 0.25s ease;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    box-shadow:
+        0 3px 0 #332000,
+        0 6px 14px rgba(0, 0, 0, 0.85);
 }
 
 .btn-small:hover {
-    background: var(--gold-dark);
-    color: var(--bg-obsidian);
+    transform: translateY(-1px);
+    filter: brightness(1.12);
+    box-shadow:
+        0 4px 0 #332000,
+        0 8px 18px rgba(255, 209, 71, 0.35);
 }
 
+.btn-small:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #332000;
+}
+
+/* Navegación Principal */
 .stoa-nav {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: clamp(8px, 1.8vw, 18px);
+    margin-bottom: clamp(20px, 3vw, 34px);
+    flex-wrap: wrap;
 }
 
 .nav-btn {
-    font-family: 'Cinzel', serif;
-    background: var(--panel-bg);
+    font-family: 'Montserrat', 'Cinzel', sans-serif;
+    font-weight: 800;
+    background: linear-gradient(180deg, #1b212e 0%, #0e1118 100%);
     border: 1px solid var(--panel-border);
     color: var(--text-muted);
-    padding: 10px 20px;
+    padding: clamp(9px, 1.4vw, 13px) clamp(14px, 2.2vw, 24px);
     cursor: pointer;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    transition: all 0.3s ease;
+    font-size: clamp(0.74rem, 1.3vw, 0.92rem);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px 0 #050608, 0 8px 16px rgba(0, 0, 0, 0.75);
+    transition: all 0.25s ease;
+    flex: 1 1 auto;
+    max-width: 340px;
+    text-align: center;
+}
+
+@media (min-width: 640px) {
+    .nav-btn {
+        flex: 0 1 auto;
+    }
 }
 
 .nav-btn.active, .nav-btn:hover {
-    border-color: var(--gold-primary);
-    color: var(--gold-light);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    border-color: #ffd147;
+    color: #ffe47a;
+    background: linear-gradient(160deg, #2b2310 0%, #14110a 100%);
+    text-shadow: 0 1px 0 #5c3b00, 0 3px 8px rgba(0, 0, 0, 0.95);
+    box-shadow:
+        0 4px 0 #3d2700,
+        0 8px 20px rgba(212, 155, 26, 0.3),
+        inset 0 1px 0 rgba(255, 243, 176, 0.35);
 }
 
-.gold-gradient-text {
-    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+/* Títulos y encabezados en 3D Metálico */
+.gold-gradient-text,
+.pillar-card h3,
+.philosopher-info h3 {
+    font-family: 'Montserrat', 'Cinzel', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    background: linear-gradient(
+        135deg,
+        #fff5b8 0%,
+        #e0ac1e 35%,
+        #8f5d00 60%,
+        #ffe270 85%,
+        #d49b1a 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-family: 'Cinzel', serif;
+    filter:
+        drop-shadow(0 2px 0 #4d3100)
+        drop-shadow(0 5px 10px rgba(0, 0, 0, 0.9));
 }
 
-/* Avatar Filosófico Estilo Cabezón (Chibi Estoico) */
+/* Avatar Filosófico */
 .philosopher-avatar-container {
-    background: linear-gradient(180deg, var(--panel-bg) 0%, rgba(22, 26, 34, 0.9) 100%);
-    border: 1px solid var(--gold-dark);
-    padding: 20px;
-    margin-bottom: 25px;
+    background: linear-gradient(180deg, #161b26 0%, #0e1118 100%);
+    border: 1px solid rgba(212, 155, 26, 0.45);
+    border-radius: 6px;
+    padding: clamp(14px, 2.5vw, 24px);
+    margin-bottom: clamp(18px, 3vw, 28px);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    gap: 14px;
+    box-shadow: 0 6px 0 #07080b, 0 12px 24px rgba(0, 0, 0, 0.8);
+}
+
+@media (min-width: 600px) {
+    .philosopher-avatar-container {
+        flex-direction: row;
+        text-align: left;
+        gap: 20px;
+    }
 }
 
 .chibi-svg-box {
-    width: 65px;
-    height: 65px;
+    width: clamp(54px, 7vw, 72px);
+    height: clamp(54px, 7vw, 72px);
     flex-shrink: 0;
     background: var(--bg-obsidian);
     border: 2px solid var(--gold-primary);
@@ -147,33 +274,39 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 14px rgba(255, 209, 71, 0.35);
+}
+
+.philosopher-info {
+    min-width: 0;
+    flex: 1;
 }
 
 .philosopher-info h3 {
-    font-family: 'Cinzel', serif;
-    color: var(--gold-light);
-    margin: 0 0 5px 0;
-    font-size: 1.2rem;
+    margin: 0 0 6px 0;
+    font-size: clamp(1rem, 2vw, 1.35rem);
 }
 
 .philosopher-info p {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
     margin: 0;
     font-style: italic;
+    line-height: 1.35;
 }
 
 /* Cinta de Estadísticas */
 .stats-ribbon {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    background: linear-gradient(180deg, var(--panel-bg) 0%, rgba(22, 26, 34, 0.7) 100%);
-    border: 1px solid var(--gold-dark);
-    padding: 15px 20px;
-    margin-bottom: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: clamp(10px, 1.8vw, 20px);
+    background: linear-gradient(180deg, #161b26 0%, #0e1118 100%);
+    border: 1px solid rgba(212, 155, 26, 0.45);
+    border-radius: 6px;
+    padding: clamp(14px, 2vw, 22px);
+    margin-bottom: clamp(18px, 3vw, 28px);
     text-align: center;
+    box-shadow: 0 6px 0 #07080b, 0 12px 24px rgba(0, 0, 0, 0.8);
 }
 
 .stat-box {
@@ -181,83 +314,128 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5px;
-    border-right: 1px solid var(--panel-border);
+    padding: 8px 6px;
+    border-bottom: 1px solid var(--panel-border);
 }
 
 .stat-box:last-child {
-    border-right: none;
+    border-bottom: none;
+}
+
+@media (min-width: 640px) {
+    .stat-box {
+        border-bottom: none;
+        border-right: 1px solid var(--panel-border);
+    }
+
+    .stat-box:last-child {
+        border-right: none;
+    }
 }
 
 .stat-value {
-    font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--gold-light);
+    font-family: 'Montserrat', 'Cinzel', sans-serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.9rem);
+    font-weight: 900;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    background: linear-gradient(145deg, #fff5b8 0%, #eab628 45%, #8a5a00 80%, #ffe270 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter:
+        drop-shadow(0 2px 0 #4d3100)
+        drop-shadow(0 5px 10px rgba(0, 0, 0, 0.9));
 }
 
 .stat-label {
-    font-size: 0.85rem;
+    font-size: clamp(0.72rem, 1.1vw, 0.88rem);
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 4px;
+    letter-spacing: 0.07em;
+    margin-top: 5px;
+    line-height: 1.25;
 }
 
 @keyframes llamaEstoica {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6)); }
-    50% { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(243, 229, 171, 0.9)); }
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(255, 209, 71, 0.65)); }
+    50% { transform: scale(1.15); filter: drop-shadow(0 0 12px rgba(255, 243, 176, 0.95)); }
 }
 
 .streak-flame {
     display: inline-block;
+    -webkit-text-fill-color: initial;
+    background: none;
+    filter: none;
     animation: llamaEstoica 2s infinite ease-in-out;
 }
 
+/* Cuadrícula de Pilares */
 .pillar-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+    gap: clamp(14px, 2vw, 24px);
 }
 
 .pillar-card {
-    background: var(--panel-bg);
+    background: linear-gradient(180deg, #171c28 0%, #0e1118 100%);
     border: 1px solid var(--panel-border);
-    padding: 20px;
+    border-radius: 6px;
+    padding: clamp(16px, 2.5vw, 26px) clamp(14px, 2vw, 20px);
     text-align: center;
     cursor: pointer;
-    transition: transform 0.3s, border-color 0.3s;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 5px 0 #06070a, 0 10px 20px rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .pillar-card:hover {
     transform: translateY(-5px);
-    border-color: var(--gold-primary);
+    border-color: #ffd147;
+    box-shadow: 0 8px 0 #3d2700, 0 16px 28px rgba(212, 155, 26, 0.25);
 }
 
 .pillar-card h3 {
-    font-family: 'Cinzel', serif;
-    color: var(--gold-light);
-    margin-bottom: 10px;
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    margin: 0 0 6px 0;
 }
 
+/* Tareas y Listas */
 .task-item {
     background: var(--panel-bg);
-    margin-bottom: 10px;
-    padding: 15px;
+    margin-bottom: 12px;
+    padding: clamp(12px, 2vw, 18px);
     border: 1px solid var(--panel-border);
+    border-radius: 4px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
 }
 
+@media (min-width: 600px) {
+    .task-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+/* Tarjeta del Pórtico */
 .portico-card {
     background: var(--panel-bg);
-    border: 1px solid var(--gold-dark);
-    padding: 25px;
-    max-width: 700px;
+    border: 1px solid var(--gold-primary);
+    border-radius: 6px;
+    padding: clamp(16px, 3vw, 32px);
+    width: 100%;
+    max-width: 820px;
     margin: 0 auto;
     text-align: left;
 }
@@ -265,202 +443,82 @@ body {
 .dilema-option {
     background: var(--bg-obsidian);
     border: 1px solid var(--panel-border);
+    border-radius: 4px;
     color: var(--text-main);
-    padding: 12px 15px;
+    padding: clamp(10px, 1.6vw, 15px);
     margin: 10px 0;
     width: 100%;
     cursor: pointer;
     text-align: left;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    transition: all 0.3s;
+    font-size: clamp(1rem, 1.6vw, 1.18rem);
+    line-height: 1.35;
+    transition: all 0.25s;
 }
 
 .dilema-option:hover {
     border-color: var(--gold-primary);
-    background: rgba(212, 175, 55, 0.05);
+    background: rgba(212, 155, 26, 0.08);
 }
 
+/* Insignias */
 .badge-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 165px), 1fr));
+    gap: clamp(12px, 1.8vw, 20px);
     text-align: center;
 }
 
 .badge-card {
     background: var(--panel-bg);
     border: 1px solid var(--panel-border);
-    padding: 18px 12px;
+    border-radius: 6px;
+    padding: clamp(14px, 2vw, 22px) 12px;
     text-align: center;
 }
 
 .badge-svg-wrapper {
-    width: 60px;
-    height: 60px;
+    width: clamp(50px, 7vw, 68px);
+    height: clamp(50px, 7vw, 68px);
     margin: 0 auto 10px auto;
 }
 
 .backup-bar {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
+    gap: 12px;
+    margin-top: clamp(22px, 3vw, 36px);
     padding-top: 20px;
     border-top: 1px solid var(--panel-border);
 }
 
 @keyframes explosionDorada {
-    0% { transform: scale(0.2); opacity: 1; box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.8); }
-    100% { transform: scale(2.5); opacity: 0; box-shadow: 0 0 50px 100px rgba(212, 175, 55, 0); }
+    0% { transform: scale(0.2); opacity: 1; box-shadow: 0 0 0 0 rgba(255, 209, 71, 0.8); }
+    100% { transform: scale(2.5); opacity: 0; box-shadow: 0 0 50px 100px rgba(255, 209, 71, 0); }
 }
 
 .particula-overlay {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(13, 15, 18, 0.85);
+    background: rgba(8, 9, 12, 0.88);
     display: flex; justify-content: center; align-items: center;
     z-index: 9999;
+    padding: 16px;
 }
 
 .particula-core {
     width: 100px; height: 100px;
-    background: radial-gradient(circle, var(--gold-light) 0%, var(--gold-primary) 60%, transparent 100%);
+    background: radial-gradient(circle, #fff3b0 0%, #d49b1a 60%, transparent 100%);
     border-radius: 50%;
     animation: explosionDorada 1s ease-out forwards;
 }
 
 .particula-mensaje {
     position: absolute; text-align: center;
-    font-family: 'Cinzel', serif; color: var(--gold-light);
-    font-size: 2rem; z-index: 10000;
-}
-/* Estilos para el Muñeco Filosófico (Chibi Cabezón con CSS Puro) */
-.chibi-avatar {
-    position: relative;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.chibi-head {
-    width: 32px;
-    height: 30px;
-    background: #161a22;
-    border: 2px solid var(--gold-primary);
-    border-radius: 50% 50% 45% 45%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.35);
-    z-index: 2;
-}
-
-.chibi-eyes {
-    position: absolute;
-    top: 11px;
-    width: 18px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.chibi-eye {
-    width: 3px;
-    height: 3px;
-    background: var(--gold-light);
-    border-radius: 50%;
-}
-
-.chibi-beard {
-    position: absolute;
-    bottom: 2px;
-    width: 18px;
-    height: 9px;
-    background: var(--gold-primary);
-    border-radius: 0 0 50% 50%;
-}
-
-.chibi-body {
-    width: 38px;
-    height: 20px;
-    background: #262c38;
-    border: 2px solid var(--gold-primary);
-    border-top: none;
-    border-radius: 0 0 16px 16px;
-    margin-top: -3px;
-    position: relative;
-    z-index: 1;
-}
-
-.chibi-laurel {
-    position: absolute;
-    top: -5px;
-    width: 34px;
-    height: 12px;
-    border-top: 2.5px solid var(--gold-light);
-    border-radius: 50% 50% 0 0;
-    z-index: 3;
-}
-/* DISEÑO DEFINITIVO DEL MUÑECO FILOSÓFICO (CSS PURO) */
-.tutor-cabezon-wrapper {
-    position: relative;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.tutor-cabeza {
-    width: 28px;
-    height: 26px;
-    background: #161a22;
-    border: 2px solid var(--gold-primary);
-    border-radius: 50%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
-}
-
-.tutor-ojos {
-    position: absolute;
-    top: 9px;
-    width: 14px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.tutor-ojo {
-    width: 2.5px;
-    height: 2.5px;
-    background: var(--gold-light);
-    border-radius: 50%;
-}
-
-.tutor-barba {
-    position: absolute;
-    bottom: 2px;
-    width: 12px;
-    height: 6px;
-    background: var(--gold-primary);
-    border-radius: 0 0 50% 50%;
-}
-
-.tutor-cuerpo {
-    width: 34px;
-    height: 16px;
-    background: #262c38;
-    border: 2px solid var(--gold-primary);
-    border-top: none;
-    border-radius: 0 0 12px 12px;
-    margin-top: -3px;
-    z-index: 1;
+    font-family: 'Montserrat', sans-serif; font-weight: 900; color: #ffe47a;
+    font-size: clamp(1.3rem, 3.5vw, 2.3rem);
+    max-width: 90vw;
+    z-index: 10000;
+    text-shadow: 0 3px 0 #5c3b00, 0 8px 18px rgba(0, 0, 0, 0.95);
 }
