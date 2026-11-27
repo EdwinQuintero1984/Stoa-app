@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'stoa_app_estado_v2';
+const IMAGEN_GUIA_STOA = 'stoa-guia.png';
 
 const PILARES = ['Sabiduría', 'Coraje', 'Justicia', 'Templanza'];
 
@@ -795,7 +796,8 @@ function actualizarPerfilCabecera() {
     if (rankEl) rankEl.textContent = `Nivel ${nivelGlobal}: ${rango}`;
     if (avatarBox) {
         avatarBox.innerHTML = `
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <img src="${IMAGEN_GUIA_STOA}" alt="STOA" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <svg style="display:none;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="32" cy="32" r="28" stroke="#d49b1a" stroke-width="2.5"/>
                 <path d="M22 44 C24 37, 40 37, 42 44" stroke="#ffd147" stroke-width="2.5" stroke-linecap="round"/>
                 <circle cx="32" cy="26" r="7" stroke="#ffd147" stroke-width="2.5"/>
@@ -976,19 +978,15 @@ function renderizarBarraEstadisticas() {
         ${renderizarFrasePoderosa()}
 
         <div class="philosopher-avatar-container">
-            <div class="chibi-svg-box" style="display: flex; align-items: center; justify-content: center;">
-                <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 54 C18 44, 24 40, 32 40 C40 40, 46 44, 46 54 Z" fill="#262c38" stroke="#ffd147" stroke-width="2.5"/>
-                    <circle cx="32" cy="26" r="14" fill="#161a22" stroke="#ffd147" stroke-width="2.5"/>
-                    <circle cx="27" cy="25" r="2" fill="#fff3b0"/>
-                    <circle cx="37" cy="25" r="2" fill="#fff3b0"/>
-                    <path d="M25 31 C25 38, 39 38, 39 31 C39 35, 25 35, 25 31 Z" fill="#d49b1a"/>
-                    <line x1="29" y1="33" x2="35" y2="33" stroke="#161a22" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+            <div class="stoa-guide-figure">
+                <img src="${IMAGEN_GUIA_STOA}" alt="STOA — Guía Estoico" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; border:1px dashed var(--gold-primary); border-radius:6px; color:var(--gold-light); font-family:'Montserrat',sans-serif; font-size:0.8rem; padding:8px; text-align:center;">
+                    Guarda stoa-guia.png en la carpeta del proyecto
+                </div>
             </div>
             <div class="philosopher-info">
-                <h3 class="gold-gradient-text">Tutor Estoico (Nivel ${nivelGlobal})</h3>
-                <p>"La disciplina diaria moldea el alma como el fuego moldea el acero."</p>
+                <h3 class="gold-gradient-text">STOA — Tu Guía Estoico (Nivel ${nivelGlobal})</h3>
+                <p>"La disciplina diaria moldea el alma como el fuego moldea el acero. Recorre cada pilar con calma y firmeza."</p>
             </div>
         </div>
 
